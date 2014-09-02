@@ -5,11 +5,11 @@ using namespace std;
 
 #include <fcntl.h>
 
-char header[] = "/*\n"
+char head[] = "/*\n"
 	"ID:esxgx1\n"
 	"LANG:C++\n"
 	"PROG:";
-char tailer[] = "\n"
+char tail[] = "\n"
 	"*/\n"
 	"#include <cstdio>\n"
 	"#include <cstring>\n"
@@ -26,13 +26,13 @@ char tailer[] = "\n"
 	"\n"
 	"}\n";
 
-char tmpl[MAX_PATH + sizeof(header) + sizeof(tailer) - 1];
+char tmpl[MAX_PATH + sizeof(head) + sizeof(tail) - 1];
 
 int main(void)
 {
 	char progname[MAX_PATH];
 	printf("Prog2gen:");scanf("%s", progname);
-	sprintf(tmpl, "%s%s%s", header, progname, tailer);
+	sprintf(tmpl, "%s%s%s", head, progname, tail);
 	strcat(progname, ".cpp");
 	int fd = open(progname, O_WRONLY | O_TRUNC | O_CREAT, 0777);
 	if (fd >= 0) {
